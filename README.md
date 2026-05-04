@@ -14,7 +14,7 @@ To set up and run this project locally, follow the steps below:
 ### 2. Installation
 * 1. Clone the repository
   ```bash
-  git clone <(https://github.com/Randimal441/Slinglish_translator_Automation.git)>
+  git clone <(https://github.com/Randimal441/Slinglish_translator_Automation_Assignment.git)>
 
 * 2. Navigate into the project directory
    ```bash
