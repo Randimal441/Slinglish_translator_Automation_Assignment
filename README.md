@@ -1,65 +1,76 @@
-# Slinglish_translator_Automation
-Automated Quality Assurance project for the SwiftTranslator (Singlish-to-Sinhala) platform using Playwright
+# Slinglish Translator Automation
 
-## 🚀 Getting Started
+This project runs Playwright-based UI automation against the PixelsSuite chat translator and writes results back to an Excel file.
 
-To set up and run this project locally, follow the steps below:
+## Requirements
 
-### 1. Prerequisites
-* Ensure you have **Node.js** (LTS version recommended) installed on your system.
-* Verify your installation by running the following command in your terminal:
-  ```bash
-  node -
+- Python 3.9+ (3.10+ recommended)
+- Playwright browsers installed
 
-### 2. Installation
-* 1. Clone the repository
-  ```bash
-  git clone <(https://github.com/Randimal441/Slinglish_translator_Automation_Assignment.git)>
+## Setup
 
-* 2. Navigate into the project directory
-   ```bash
-  cd <........................>
+From the project folder:
 
-* 3. Install dependencies
-  ```bash                                                        
-   npm install
+```bash
+python -m venv .venv
+.\.venv\Scripts\activate
+python -m pip install --upgrade pip
+pip install playwright openpyxl
+python -m playwright install
+```
 
-* 4. Install Playwright browsers
-  ```bash
-  npx playwright install
-  
-### 3. Running Tests
+## Test Data (Excel)
 
-* Run all tests in headless mode:
-  ```bash
-  npx playwright test
-  
-* Run tests in UI Mode (Interactive):
-  ```bash
-  npx playwright test --ui
-  
-* View the test execution results:
-  ```bash
-  npx playwright show-report
-.
+The script expects an Excel file containing test cases with input and expected Sinhala output columns.
 
+Important details:
 
+- The default Excel path in the script points to `../test_automation/Assignment 1 - Test cases.xlsx`.
+- In this repository, the Excel file is located next to the script: `Assignment 1 - Test cases.xlsx`.
+- To avoid path issues, pass the file explicitly with `--excel`.
+- The default sheet name is ` Test cases` (note the leading space).
 
+## Run
 
+Basic run (headed browser):
 
+```bash
+python test_automation.py --excel "Assignment 1 - Test cases.xlsx"
+```
 
+Headless run:
 
+```bash
+python test_automation.py --excel "Assignment 1 - Test cases.xlsx" --headless
+```
 
+Specify sheet name if yours differs:
 
+```bash
+python test_automation.py --excel "Assignment 1 - Test cases.xlsx" --sheet "Test cases"
+```
 
+Override target URL:
 
+```bash
+set FRONTEND_URL=https://www.pixelssuite.com/chat-translator
+python test_automation.py --excel "Assignment 1 - Test cases.xlsx"
+```
 
+## Outputs
 
+The script updates the Excel file with:
 
+- Actual output text
+- Status (PASS, FAIL, or COLLECTED)
 
+You can change output destination:
 
+```bash
+python test_automation.py --excel "Assignment 1 - Test cases.xlsx" --output "results.xlsx"
+```
 
+## Notes
 
-
-
-
+- The script auto-detects columns based on common header names (Singlish/Input/Expected/Actual/Status).
+- If headers are unusual or merged, you can set `--header-row` and `--input-col`, `--expected-col`, `--actual-col`, `--status-col`.
