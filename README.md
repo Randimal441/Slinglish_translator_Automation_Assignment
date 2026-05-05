@@ -18,7 +18,7 @@ To set up and run this project locally, follow the steps below:
 
 * 2. Navigate into the project directory
    ```bash
-  cd <Slinglish_translator_Automation>
+  cd <........................>
 
 * 3. Install dependencies
   ```bash                                                        
